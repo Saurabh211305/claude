@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0a0a0a;
+  --ink-soft: #131316;
+  --ink-elevated: #1a1a1e;
+  --paper: #f6f3ec;
+  --paper-dim: #ece7db;
+  --gold: #c9a25c;
+  --gold-soft: #e4cd9a;
+  --line: rgba(246, 243, 236, 0.12);
+  --line-strong: rgba(246, 243, 236, 0.22);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-elevated: var(--ink-elevated);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-line: var(--line);
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.font-display {
+  font-family: var(--font-fraunces);
+}
+
+.text-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.container-fluid {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 5rem);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+}
+
+.reveal-mask {
+  overflow: hidden;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.cursor-layer {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.has-cursor, html.has-cursor * {
+    cursor: none !important;
+  }
+  .cursor-layer {
+    display: block;
+  }
+}
