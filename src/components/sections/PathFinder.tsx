@@ -148,7 +148,7 @@ export default function PathFinder() {
                   <div className="flex flex-wrap gap-4">
                     <Link
                       href={`/buy?${recommendation?.query}`}
-                      className="group flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-medium text-midnight transition-transform duration-300 hover:scale-105"
+                      className="group flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-medium text-ink transition-transform duration-300 hover:scale-105"
                     >
                       View Matching Properties
                       <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />

@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --midnight: #090d1a;
-  --midnight-soft: #10152b;
-  --midnight-elevated: #1a2140;
-  --paper: #fbf8f3;
-  --paper-dim: #f1ebe0;
+  --midnight: #12141f;
+  --midnight-soft: #1c1f2e;
+  --midnight-elevated: #262a3d;
+  --paper: #f8f7f5;
+  --paper-dim: #efedea;
   --surface: #ffffff;
-  --ink: #14151d;
-  --gold: #dd8a3b;
-  --gold-deep: #b8631f;
-  --gold-soft: #f0c896;
+  --ink: #14161f;
+  --gold: #e2872a;
+  --gold-deep: #b5651d;
+  --gold-soft: #f4c98a;
 }
 
 @theme inline {
@@ -37,7 +37,7 @@ body {
 
 ::selection {
   background: var(--gold-soft);
-  color: var(--midnight);
+  color: var(--ink);
 }
 
 * {
@@ -90,6 +90,17 @@ body {
 .reveal-mask {
   overflow: hidden;
   display: block;
+}
+
+/* subtle film-grain texture, fixed over the whole viewport */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @media (prefers-reduced-motion: reduce) {

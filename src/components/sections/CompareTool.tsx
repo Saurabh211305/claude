@@ -39,7 +39,7 @@ export default function CompareTool() {
                   setBIndex(1);
                 }}
                 className={`rounded-full px-4 py-2 text-xs capitalize transition-colors ${
-                  mode === m ? "bg-gold text-midnight" : "text-ink/60 hover:text-ink"
+                  mode === m ? "bg-gold text-ink" : "text-ink/60 hover:text-ink"
                 }`}
               >
                 {m}

@@ -44,7 +44,7 @@ export default function CustomCursor() {
       />
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[998] flex items-center justify-center rounded-full border border-gold/50"
+        className="pointer-events-none fixed left-0 top-0 z-[998] flex items-center justify-center rounded-full border border-ink/40 mix-blend-difference"
         style={{
           x: ringX,
           y: ringY,
@@ -54,7 +54,7 @@ export default function CustomCursor() {
         animate={{
           width: active ? 88 : 34,
           height: active ? 88 : 34,
-          backgroundColor: active ? "rgba(221,138,59,0.16)" : "rgba(221,138,59,0)",
+          backgroundColor: active ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0)",
         }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >

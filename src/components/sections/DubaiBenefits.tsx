@@ -37,24 +37,24 @@ const BENEFITS = [
 
 export default function DubaiBenefits() {
   return (
-    <section className="bg-midnight py-24 text-paper md:py-32">
+    <section className="bg-paper-dim py-24 text-ink md:py-32">
       <div className="container-fluid">
         <div className="max-w-2xl">
           <Reveal>
             <p className="text-eyebrow mb-4 text-gold">Dubai Investment Benefits</p>
           </Reveal>
-          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.75rem)] font-light leading-[1.1] text-paper">
+          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.75rem)] font-light leading-[1.1] text-ink">
             <TextReveal lines={["Why global investors", "keep choosing Dubai."]} />
           </h2>
         </div>
 
-        <StaggerGroup className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-sm bg-paper/10 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerGroup className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-sm bg-ink/8 sm:grid-cols-2 lg:grid-cols-3">
           {BENEFITS.map((b) => (
             <StaggerItem key={b.title}>
-              <div className="h-full bg-midnight p-8">
+              <div className="h-full bg-surface p-8">
                 <b.icon className="text-gold" size={26} strokeWidth={1.5} />
-                <p className="mt-5 font-medium text-paper">{b.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-paper/55">{b.description}</p>
+                <p className="mt-5 font-medium text-ink">{b.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink/55">{b.description}</p>
               </div>
             </StaggerItem>
           ))}

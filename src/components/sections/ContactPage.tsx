@@ -52,7 +52,7 @@ export default function ContactPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="flex min-h-[360px] flex-col items-center justify-center text-center"
               >
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-gold text-midnight">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-gold text-ink">
                   <Check size={26} />
                 </div>
                 <p className="font-display text-2xl text-ink">Message sent.</p>
@@ -93,7 +93,7 @@ export default function ContactPage() {
                 />
                 <button
                   type="submit"
-                  className="w-full rounded-sm bg-gold px-8 py-4 text-sm font-medium tracking-wide text-midnight transition-transform duration-300 hover:scale-[1.02]"
+                  className="w-full rounded-sm bg-gold px-8 py-4 text-sm font-medium tracking-wide text-ink transition-transform duration-300 hover:scale-[1.02]"
                 >
                   Send Message
                 </button>

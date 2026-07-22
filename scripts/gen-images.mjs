@@ -11,8 +11,8 @@ function grain(id) {
   `;
 }
 
-// --- Night skyline: navy sky, glowing tower silhouettes, warm window lights ---
-function skylineNight({ accent = "#dd8a3b" }) {
+// --- Day skyline: bright sky, soft ink-toned tower silhouettes with glass reflections ---
+function skylineDay({ accent = "#e2872a", tone = "#c9c6bd" }) {
   let towers = "";
   const specs = [
     { x: 120, w: 90, h: 420 },
@@ -29,53 +29,41 @@ function skylineNight({ accent = "#dd8a3b" }) {
   ];
   for (const s of specs) {
     const top = 900 - s.h;
-    towers += `<rect x="${s.x}" y="${top}" width="${s.w}" height="${s.h}" fill="#040611"/>`;
+    towers += `<rect x="${s.x}" y="${top}" width="${s.w}" height="${s.h}" fill="${tone}" opacity="0.85"/>`;
+    towers += `<rect x="${s.x}" y="${top}" width="${Math.max(2, s.w * 0.35)}" height="${s.h}" fill="${accent}" opacity="0.14"/>`;
     if (s.spire) {
-      towers += `<polygon points="${s.x + s.w / 2 - 3},${top - 90} ${s.x + s.w / 2 + 3},${top - 90} ${s.x + s.w / 2 + 8},${top} ${s.x + s.w / 2 - 8},${top}" fill="#040611"/>`;
+      towers += `<polygon points="${s.x + s.w / 2 - 3},${top - 90} ${s.x + s.w / 2 + 3},${top - 90} ${s.x + s.w / 2 + 8},${top} ${s.x + s.w / 2 - 8},${top}" fill="${tone}" opacity="0.85"/>`;
     }
-    let windows = "";
-    const rows = Math.floor(s.h / 22);
-    const cols = Math.max(2, Math.floor(s.w / 16));
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        if (Math.random() > 0.45) continue;
-        const wx = s.x + 5 + c * (s.w / cols);
-        const wy = top + 10 + r * 22;
-        windows += `<rect x="${wx.toFixed(1)}" y="${wy}" width="4" height="6" fill="${accent}" opacity="${(0.35 + Math.random() * 0.5).toFixed(2)}"/>`;
-      }
-    }
-    towers += windows;
   }
   return towers;
 }
 
-function makeSkylineNight({ w, h, accent = "#dd8a3b" }) {
-  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+function makeSkylineDay({ w, h, accent = "#e2872a" }) {
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#040611"/>
-      <stop offset="55%" stop-color="#0a0f22"/>
-      <stop offset="100%" stop-color="#141b34"/>
+    <linearGradient id="skyD" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef2f4"/>
+      <stop offset="55%" stop-color="#e6ece9"/>
+      <stop offset="100%" stop-color="#dbe6e0"/>
     </linearGradient>
-    <radialGradient id="haze" cx="50%" cy="75%" r="60%">
-      <stop offset="0%" stop-color="${accent}" stop-opacity="0.16"/>
+    <radialGradient id="hazeD" cx="55%" cy="70%" r="60%">
+      <stop offset="0%" stop-color="${accent}" stop-opacity="0.1"/>
       <stop offset="100%" stop-color="${accent}" stop-opacity="0"/>
     </radialGradient>
-    ${grain("gn")}
+    ${grain("gsd")}
   </defs>
-  <rect width="1400" height="900" fill="url(#sky)"/>
-  <circle cx="1150" cy="160" r="70" fill="${accent}" opacity="0.9"/>
-  <circle cx="1150" cy="160" r="130" fill="${accent}" opacity="0.1"/>
-  <rect width="1400" height="900" fill="url(#haze)"/>
-  ${skylineNight({ accent })}
-  <rect x="0" y="860" width="1400" height="40" fill="#040611"/>
-  <rect width="1400" height="900" filter="url(#gn)"/>
+  <rect width="1400" height="900" fill="url(#skyD)"/>
+  <circle cx="1160" cy="180" r="65" fill="#fbe8b8" opacity="0.85"/>
+  <rect width="1400" height="900" fill="url(#hazeD)"/>
+  ${skylineDay({ accent })}
+  <rect x="0" y="870" width="1400" height="30" fill="#d4dfd8"/>
+  <rect width="1400" height="900" filter="url(#gsd)"/>
 </svg>`;
 }
 
 // --- Coastal / resort daylight scene (low-rise waterfront) ---
 function makeCoastalDay({ w, h, accent }) {
-  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="skyd" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#eaf3f5"/>
@@ -112,7 +100,7 @@ function makeCoastalDay({ w, h, accent }) {
 
 // --- Golf community daylight scene ---
 function makeGolfDay({ w, h, accent }) {
-  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#eef3e3"/>
@@ -136,49 +124,49 @@ function makeGolfDay({ w, h, accent }) {
 </svg>`;
 }
 
-// --- Developer hero: dark abstract skyline with big empty middle for wordmark overlay ---
+// --- Developer hero: bright abstract skyline with big empty middle for wordmark overlay ---
 function makeDeveloperHero({ w, h, accent }) {
-  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="dsky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0a0f22"/>
-      <stop offset="100%" stop-color="#141b34"/>
+      <stop offset="0%" stop-color="#f1f0ec"/>
+      <stop offset="100%" stop-color="#e4e2da"/>
     </linearGradient>
     <radialGradient id="dglow" cx="50%" cy="45%" r="60%">
-      <stop offset="0%" stop-color="${accent}" stop-opacity="0.2"/>
+      <stop offset="0%" stop-color="${accent}" stop-opacity="0.14"/>
       <stop offset="100%" stop-color="${accent}" stop-opacity="0"/>
     </radialGradient>
     ${grain("gd")}
   </defs>
   <rect width="1400" height="900" fill="url(#dsky)"/>
   <rect width="1400" height="900" fill="url(#dglow)"/>
-  ${skylineNight({ accent })}
+  ${skylineDay({ accent, tone: "#b9b6ac" })}
   <rect width="1400" height="900" filter="url(#gd)"/>
 </svg>`;
 }
 
 function makeContactTexture({ w, h, accent }) {
-  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="csky" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a0f22"/>
-      <stop offset="100%" stop-color="#1a2140"/>
+      <stop offset="0%" stop-color="#f1f0ec"/>
+      <stop offset="100%" stop-color="#e8e6de"/>
     </linearGradient>
     <radialGradient id="cglow" cx="70%" cy="30%" r="60%">
-      <stop offset="0%" stop-color="${accent}" stop-opacity="0.22"/>
+      <stop offset="0%" stop-color="${accent}" stop-opacity="0.14"/>
       <stop offset="100%" stop-color="${accent}" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <rect width="1400" height="900" fill="url(#csky)"/>
   <rect width="1400" height="900" fill="url(#cglow)"/>
-  ${skylineNight({ accent })}
+  ${skylineDay({ accent, tone: "#c4c1b7" })}
 </svg>`;
 }
 
-const GOLD = "#dd8a3b";
+const GOLD = "#e2872a";
 
 const items = [
-  { name: "hero-dubai", w: 2200, h: 1300, fn: () => makeSkylineNight({ w: 2200, h: 1300, accent: GOLD }) },
+  { name: "hero-dubai", w: 2200, h: 1300, fn: () => makeSkylineDay({ w: 2200, h: 1300, accent: GOLD }) },
   { name: "contact-texture", w: 2000, h: 1200, fn: () => makeContactTexture({ w: 2000, h: 1200, accent: GOLD }) },
 
   { name: "property-canopies", w: 1200, h: 1500, fn: () => makeCoastalDay({ w: 1200, h: 1500, accent: "#c9a25c" }) },

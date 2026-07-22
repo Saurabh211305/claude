@@ -48,7 +48,7 @@ export function ProjectCard({ property }: { property: Property }) {
   return (
     <motion.div whileHover="hover" className="group h-full">
       <Link href={`/projects/${property.slug}`} data-cursor="View" className="block h-full">
-        <div className="relative aspect-[4/5] w-full overflow-hidden bg-midnight-elevated">
+        <div className="relative aspect-[4/5] w-full overflow-hidden bg-paper-dim">
           <motion.div
             variants={{ hover: { scale: 1.08 } }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -63,7 +63,7 @@ export function ProjectCard({ property }: { property: Property }) {
           <div className="absolute inset-0 bg-gradient-to-t from-midnight/90 via-midnight/10 to-transparent" />
 
           <div className="absolute left-4 top-4 flex gap-2">
-            <span className="rounded-full bg-gold px-3 py-1 text-[10px] font-medium tracking-wide text-midnight">
+            <span className="rounded-full bg-gold px-3 py-1 text-[10px] font-medium tracking-wide text-ink">
               {property.status.toUpperCase()}
             </span>
             <span className="rounded-full border border-paper/30 bg-midnight/40 px-3 py-1 text-[10px] tracking-wide text-paper backdrop-blur-sm">
@@ -75,7 +75,7 @@ export function ProjectCard({ property }: { property: Property }) {
             variants={{ hover: { opacity: 1, y: 0 } }}
             initial={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.4 }}
-            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-gold text-midnight"
+            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-gold text-ink"
           >
             <ArrowUpRight size={16} />
           </motion.div>

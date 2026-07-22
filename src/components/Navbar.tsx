@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import Logo from "@/components/Logo";
+import MagneticButton from "@/components/motion/MagneticButton";
 
 const LINKS = [
   { label: "Off - Plan", href: "/buy?status=off-plan" },
@@ -44,13 +45,13 @@ export default function Navbar() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "border-b border-paper/10 bg-midnight/90 backdrop-blur-md"
-            : "border-b border-transparent bg-gradient-to-b from-midnight/70 to-transparent"
+            ? "border-b border-ink/8 bg-paper/90 backdrop-blur-md"
+            : "border-b border-transparent bg-paper/10 backdrop-blur-[2px]"
         }`}
       >
         <div className="container-fluid flex h-20 items-center justify-between md:h-24">
           <Link href="/" data-cursor="Home">
-            <Logo variant="light" />
+            <Logo variant="dark" />
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
@@ -59,7 +60,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 data-cursor="View"
-                className="group relative text-sm tracking-wide text-paper/80 transition-colors hover:text-paper"
+                className="group relative text-sm tracking-wide text-ink/75 transition-colors hover:text-ink"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
@@ -71,7 +72,7 @@ export default function Navbar() {
               onMouseEnter={() => setExploreOpen(true)}
               onMouseLeave={() => setExploreOpen(false)}
             >
-              <button className="flex items-center gap-1.5 text-sm tracking-wide text-paper/80 transition-colors hover:text-paper">
+              <button className="flex items-center gap-1.5 text-sm tracking-wide text-ink/75 transition-colors hover:text-ink">
                 Explore
                 <ChevronDown
                   size={14}
@@ -87,12 +88,12 @@ export default function Navbar() {
                     transition={{ duration: 0.2 }}
                     className="absolute left-0 top-full pt-3"
                   >
-                    <div className="w-56 rounded-sm border border-paper/10 bg-midnight-soft p-2 shadow-2xl">
+                    <div className="w-56 rounded-sm border border-ink/10 bg-surface p-2 shadow-xl">
                       {EXPLORE_LINKS.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
-                          className="block rounded-sm px-4 py-2.5 text-sm text-paper/75 transition-colors hover:bg-midnight-elevated hover:text-paper"
+                          className="block rounded-sm px-4 py-2.5 text-sm text-ink/70 transition-colors hover:bg-paper-dim hover:text-ink"
                         >
                           {item.label}
                         </Link>
@@ -105,29 +106,31 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <button className="hidden items-center gap-1.5 rounded-full border border-paper/20 px-3.5 py-2 text-xs text-paper/80 md:flex">
+            <button className="hidden items-center gap-1.5 rounded-full border border-ink/15 px-3.5 py-2 text-xs text-ink/70 md:flex">
               AED <ChevronDown size={12} />
             </button>
-            <a
-              href="https://wa.me/"
-              data-cursor="Chat"
-              className="hidden items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-midnight transition-transform duration-300 hover:scale-105 md:flex"
-            >
-              <MessageCircle size={16} />
-              WhatsApp
-            </a>
+            <MagneticButton>
+              <a
+                href="https://wa.me/"
+                data-cursor="Chat"
+                className="hidden items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-300 md:flex"
+              >
+                <MessageCircle size={16} />
+                WhatsApp
+              </a>
+            </MagneticButton>
             <button
               aria-label="Toggle menu"
               onClick={() => setOpen((v) => !v)}
               className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
             >
               <span
-                className={`h-px w-6 bg-paper transition-transform duration-300 ${
+                className={`h-px w-6 bg-ink transition-transform duration-300 ${
                   open ? "translate-y-[3.5px] rotate-45" : ""
                 }`}
               />
               <span
-                className={`h-px w-6 bg-paper transition-transform duration-300 ${
+                className={`h-px w-6 bg-ink transition-transform duration-300 ${
                   open ? "-translate-y-[3.5px] -rotate-45" : ""
                 }`}
               />
@@ -143,7 +146,7 @@ export default function Navbar() {
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-midnight px-8"
+            className="fixed inset-0 z-40 flex flex-col justify-center bg-paper px-8"
           >
             <nav className="flex flex-col gap-5">
               {[...LINKS, { label: "Developers", href: "/developers" }].map((link, i) => (
@@ -156,7 +159,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="font-display text-3xl italic text-paper"
+                    className="font-display text-3xl italic text-ink"
                   >
                     {link.label}
                   </Link>

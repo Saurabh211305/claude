@@ -28,13 +28,13 @@ export default function RoiCalculator() {
   }, [price, downPaymentPct, rentalYield, appreciation, years]);
 
   return (
-    <section className="bg-midnight py-24 text-paper md:py-32">
+    <section className="bg-paper-dim py-24 text-ink md:py-32">
       <div className="container-fluid">
         <div className="max-w-2xl">
           <Reveal>
             <p className="text-eyebrow mb-4 text-gold">ROI Calculator</p>
           </Reveal>
-          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.75rem)] font-light leading-[1.1] text-paper">
+          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.75rem)] font-light leading-[1.1] text-ink">
             <TextReveal lines={["Model your return", "before you invest."]} />
           </h2>
         </div>
@@ -88,8 +88,8 @@ export default function RoiCalculator() {
             />
           </div>
 
-          <div className="rounded-sm border border-paper/10 bg-paper/[0.04] p-8">
-            <p className="text-eyebrow mb-6 text-paper/50">Estimated Outcome</p>
+          <div className="rounded-sm border border-ink/10 bg-surface p-8">
+            <p className="text-eyebrow mb-6 text-ink/50">Estimated Outcome</p>
             <div className="space-y-5">
               <ResultRow label="Down Payment Required" value={formatAED(results.downPayment)} />
               <ResultRow label="Estimated Annual Rental Income" value={formatAED(results.annualRent)} />
@@ -99,12 +99,12 @@ export default function RoiCalculator() {
               />
               <ResultRow label="Projected Property Value" value={formatAED(results.futureValue)} />
               <ResultRow label="Estimated Capital Gain" value={formatAED(results.capitalGain)} />
-              <div className="mt-6 border-t border-paper/10 pt-6">
+              <div className="mt-6 border-t border-ink/10 pt-6">
                 <p className="text-eyebrow mb-2 text-gold">Total Estimated ROI on Down Payment</p>
                 <p className="font-display text-4xl text-gold">
                   {results.roiOnDownPayment.toFixed(0)}%
                 </p>
-                <p className="mt-2 text-xs leading-relaxed text-paper/40">
+                <p className="mt-2 text-xs leading-relaxed text-ink/40">
                   Illustrative estimate based on your assumptions — not a
                   guarantee of future performance. Actual returns depend on
                   service charges, financing costs, and market conditions.
@@ -138,7 +138,7 @@ function SliderField({
   return (
     <div>
       <div className="mb-2 flex items-baseline justify-between">
-        <label className="text-sm text-paper/70">{label}</label>
+        <label className="text-sm text-ink/70">{label}</label>
         <span className="font-display text-lg text-gold">{format(value)}</span>
       </div>
       <input
@@ -148,7 +148,7 @@ function SliderField({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-paper/15 accent-[#dd8a3b]"
+        className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-ink/12 accent-[#e2872a]"
       />
     </div>
   );
@@ -157,8 +157,8 @@ function SliderField({
 function ResultRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between text-sm">
-      <span className="text-paper/55">{label}</span>
-      <span className="font-medium tabular-nums text-paper">{value}</span>
+      <span className="text-ink/55">{label}</span>
+      <span className="font-medium tabular-nums text-ink">{value}</span>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
+import PageTransition from "@/components/PageTransition";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -37,7 +38,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <Preloader />
         <CustomCursor />
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <div className="grain-overlay" aria-hidden />
+        <SmoothScrollProvider>
+          <PageTransition>{children}</PageTransition>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

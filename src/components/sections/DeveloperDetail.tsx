@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/motion/Reveal";
 import { ProjectCard } from "@/components/sections/FeaturedProjects";
+import MagneticButton from "@/components/motion/MagneticButton";
 import type { Developer } from "@/lib/data";
 import { PROPERTIES } from "@/lib/data";
 
@@ -10,25 +11,27 @@ export default function DeveloperDetail({ developer }: { developer: Developer })
 
   return (
     <>
-      <section className="relative flex h-[56svh] min-h-[420px] w-full items-center justify-center overflow-hidden bg-midnight pt-24 text-center">
-        <img src={developer.image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-70" />
-        <div className="absolute inset-0 bg-midnight/50" />
+      <section className="relative flex h-[56svh] min-h-[420px] w-full items-center justify-center overflow-hidden bg-paper pt-24 text-center">
+        <img src={developer.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-paper/55" />
         <div className="container-fluid relative z-10">
-          <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-light text-paper">
+          <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-light text-ink">
             {developer.name}
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-paper/70">{developer.blurb}</p>
+          <p className="mx-auto mt-4 max-w-xl text-ink/70">{developer.blurb}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="flex items-center gap-2 rounded-full bg-gold px-7 py-3 text-sm font-medium text-midnight transition-transform duration-300 hover:scale-105"
-            >
-              Talk with an Expert
-              <ArrowRight size={16} />
-            </Link>
+            <MagneticButton>
+              <Link
+                href="/contact"
+                className="flex items-center gap-2 rounded-full bg-gold px-7 py-3 text-sm font-medium text-ink transition-transform duration-300 hover:scale-105"
+              >
+                Talk with an Expert
+                <ArrowRight size={16} />
+              </Link>
+            </MagneticButton>
             <a
               href="#projects"
-              className="rounded-full border border-paper/30 px-7 py-3 text-sm text-paper transition-colors hover:border-paper/60"
+              className="rounded-full border border-ink/25 px-7 py-3 text-sm text-ink transition-colors hover:border-ink/45"
             >
               View Projects
             </a>

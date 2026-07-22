@@ -17,7 +17,7 @@ export default function SmartSearch() {
   }
 
   return (
-    <section className="relative z-20 bg-midnight px-4">
+    <section className="relative z-20 bg-paper px-4">
       <Reveal className="container-fluid -mt-16 md:-mt-20">
         <form
           onSubmit={handleSubmit}
@@ -47,7 +47,7 @@ export default function SmartSearch() {
           <button
             type="submit"
             data-cursor="Search"
-            className="shrink-0 rounded-sm bg-gold px-7 py-3.5 text-sm font-medium text-midnight transition-transform duration-300 hover:scale-[1.02]"
+            className="shrink-0 rounded-sm bg-gold px-7 py-3.5 text-sm font-medium text-ink transition-transform duration-300 hover:scale-[1.02]"
           >
             Search
           </button>

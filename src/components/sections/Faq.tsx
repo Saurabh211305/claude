@@ -36,18 +36,18 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-midnight py-24 text-paper md:py-32">
+    <section className="bg-paper py-24 text-ink md:py-32">
       <div className="container-fluid">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <p className="text-eyebrow mb-4 text-gold">FAQ</p>
           </Reveal>
-          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.75rem)] font-light leading-[1.1] text-paper">
+          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.75rem)] font-light leading-[1.1] text-ink">
             <TextReveal className="justify-center" lines={["Common questions,", "answered plainly."]} />
           </h2>
         </div>
 
-        <Reveal delay={0.15} className="mx-auto mt-14 max-w-3xl divide-y divide-paper/10 border-y border-paper/10">
+        <Reveal delay={0.15} className="mx-auto mt-14 max-w-3xl divide-y divide-ink/10 border-y border-ink/10">
           {FAQS.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -56,7 +56,7 @@ export default function Faq() {
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="flex w-full items-center justify-between gap-6 py-6 text-left"
                 >
-                  <span className="font-display text-lg text-paper md:text-xl">{item.q}</span>
+                  <span className="font-display text-lg text-ink md:text-xl">{item.q}</span>
                   <Plus
                     size={18}
                     className={`shrink-0 text-gold transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
@@ -67,7 +67,7 @@ export default function Faq() {
                   style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-2xl pb-6 text-sm leading-relaxed text-paper/60">{item.a}</p>
+                    <p className="max-w-2xl pb-6 text-sm leading-relaxed text-ink/60">{item.a}</p>
                   </div>
                 </div>
               </div>

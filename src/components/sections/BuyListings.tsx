@@ -61,7 +61,7 @@ export default function BuyListings() {
               key={f}
               onClick={() => setStatus(f)}
               className={`rounded-full px-5 py-2 text-sm transition-colors ${
-                status === f ? "bg-gold text-midnight" : "border border-ink/12 text-ink/70 hover:border-gold/50"
+                status === f ? "bg-gold text-ink" : "border border-ink/12 text-ink/70 hover:border-gold/50"
               }`}
             >
               {f}

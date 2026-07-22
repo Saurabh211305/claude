@@ -67,7 +67,7 @@ export default function Communities() {
                   <Link
                     href="/buy"
                     data-cursor="View"
-                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-xs font-medium text-midnight transition-transform duration-300 hover:scale-105"
+                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-xs font-medium text-ink transition-transform duration-300 hover:scale-105"
                   >
                     See More
                     <ArrowRight size={14} />
