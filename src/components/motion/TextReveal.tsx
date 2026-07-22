@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
 export default function TextReveal({
   lines,
@@ -8,7 +9,7 @@ export default function TextReveal({
   delay = 0,
   stagger = 0.12,
 }: {
-  lines: string[];
+  lines: ReactNode[];
   className?: string;
   delay?: number;
   stagger?: number;
@@ -17,7 +18,7 @@ export default function TextReveal({
     <span className={className}>
       {lines.map((line, i) => (
         <motion.span
-          key={line}
+          key={i}
           className="reveal-mask"
           initial="hidden"
           whileInView="show"

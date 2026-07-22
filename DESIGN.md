@@ -1,89 +1,64 @@
 # Trixis Homes — Redesign Strategy
 
-This document is the rationale behind the redesign implemented in this repository. It covers the audit of the previous site, the creative direction, and a section-by-section breakdown of the new homepage.
+This document is the rationale behind the redesign implemented in this repository.
 
-## 1. Audit summary
+## 1. What this rebuild is
 
-The brief described the current site (trixis.vercel.app) as generic, visually flat, and lacking the emotional weight expected of a premium real estate brand. The most common failure pattern in real-estate sites at this tier is treating the homepage as a list of features (amenities, floor plans, contact form) rather than as a narrative that builds desire before asking for information. The redesign inverts that: every section earns the right to ask for the next thing, and the enquiry form is the last step of a journey, not the first thing competing for attention.
+Trixis Homes is a Dubai/Abu Dhabi off-plan property brokerage aggregating listings across developers (Aldar, Emaar, Damac, Binghatti, Beyond). The live site (`trixis.vercel.app`) already has the right information architecture — Off-Plan, Buy, Sell, Insights, Media, Contact, Developers — but a navy/orange "corporate portal" execution that reads as generic rather than premium.
+
+This redesign keeps every real page and every piece of real copy, pricing, and developer data pulled directly from the client's screenshots of the live site, and rebuilds the *execution*: typography, spacing, motion, and a set of genuinely interactive tools (path finder, ROI calculator, comparison tool, market dashboard) that the brief asked for on top of the existing content.
+
+Two revisions happened along the way, both driven by direct client feedback:
+1. An initial pass used a fictional "curated boutique villas" concept before the real business (a Dubai off-plan brokerage) was shared — that direction was fully discarded.
+2. A palette pass moved from dark-only to a light/warm editorial mood, then the real brand's actual navy + orange identity (visible in the live nav, logo, and CTAs) was restored and refined — the client's own brand, not a generic aesthetic, elevated rather than replaced.
 
 ## 2. Creative direction
 
-Direction was revised once, after the client pointed to a set of Framer real-estate/architecture templates (Real Agent, Haven, Found & Formed, Aarkitekt) and asked explicitly for a light, warm, editorial feel rather than a dark luxury-hotel palette. The section structure and motion system below carried over unchanged; only the color system and imagery mood were rebuilt.
+- **Palette**: deep midnight navy (`#090d1a`) as the primary dark surface, warm paper (`#fbf8f3`, never stark white) as the light surface, and a single refined amber/orange accent (`#dd8a3b`) — a warmer, less saturated take on the live site's flat CTA-orange, used consistently for labels, icons, and primary actions.
+- **Typography**: Fraunces (an editorial serif with italics) for display headlines paired with Inter for body/UI — carries the same "trusted but not corporate" register the brief asked for.
+- **Rhythm**: dark/light alternation between sections (mirroring the live site's own pattern) rather than a single flat scroll, so a 17-section homepage still reads as paced rather than exhausting.
+- **Motion language**: scroll-triggered reveals, masked text, image wipes, animated counters, and a custom cursor — carried over from the original design system and applied consistently across every new page and tool.
 
-- **Palette**: warm cream (`#f7f3ea`) as the dominant surface with a deeper cream (`#eee6d6`) for alternating panels, white (`#ffffff`) card surfaces, warm charcoal ink (`#221f1b`, never pure black) for text, and a single clay/terracotta accent (`#a9683f`) used sparingly on labels, icons, and primary actions. The only deliberate dark moment on the page is the localized photo-legibility gradient behind hero/card text and the one-card hover-invert in the "Why Trixis" grid — never a page-level dark theme.
-- **Typography**: Fraunces (a soft, editorial serif with italics) for display headlines, paired with Inter for body copy and UI. The serif carries emotion; the sans carries clarity — the same pairing used across the referenced template genre.
-- **Rhythm**: light → light-deep → light alternation (cream / cream-deep / white cards) rather than dark/light inversion, so the page stays airy end to end while still having visual pacing between sections.
-- **Motion language**: everything reveals on scroll, nothing pops. Text unmasks line-by-line, images wipe open rather than fade, numbers count up once, and hover states are slow (300–700ms) with eased curves rather than default linear transitions. Motion is used to *reveal* content the user already wants, not to decorate.
+## 3. Site structure
 
-## 3. Section-by-section breakdown
+Rebuilt as a real multi-page Next.js app, not a single long homepage:
 
-### Navbar
-- **Purpose**: orientation and a low-friction path to enquiry from anywhere on the page.
-- **Layout**: fixed, transparent over the hero, transitions to a blurred glass bar after 40px of scroll so it never fights the hero image.
-- **Interaction**: underline-on-hover links, a full-screen italic-serif takeover menu on mobile instead of a cramped dropdown.
-- **Conversion**: a permanently visible "Private Enquiry" pill button — the primary CTA is never more than one click away.
+- `/` — Home (17 sections, see below)
+- `/buy` — searchable, filterable property listings
+- `/projects/[slug]` — project detail (built from the real Canopies at Yas Point page)
+- `/developers` — developer directory with real stats
+- `/developers/[slug]` — developer detail (built from the real Aldar Properties page)
+- `/sell` — seller lead-gen page (not shown in source screenshots; designed on-brand, pattern-matched to the rest of the site)
+- `/contact` — contact page (same caveat — placeholder phone/email/address pending real details)
+- `/insights`, `/insights/[slug]` — market insights articles
+- `/media` — social/press image grid
 
-### Hero
-- **Purpose**: set the emotional register in under three seconds. This is the section doing the heaviest lifting for "premium first impression."
-- **Layout**: full-bleed image, content anchored to the bottom third (not dead-centered — centered hero text is the single most common "generic template" tell).
-- **Design direction**: cinematic dusk villa scene, heavy gradient at the base for legibility, an eyebrow label with an animated rule, a three-line serif headline that reveals line-by-line, and a supporting line that does the actual positioning work ("designed in limited number... reserved for those who value substance over spectacle").
-- **Animation**: parallax background on scroll, masked line-reveal headline timed to finish exactly as the preloader lifts, animated scroll cue.
-- **Conversion**: two CTAs at different commitment levels — "View Residences" (primary, low-friction browsing) and "Private Enquiry" (direct, for ready buyers) — instead of a single generic "Learn More."
+## 4. Homepage — 17 sections, in the order specified
 
-### Stats strip
-- **Purpose**: credibility, immediately after the emotional hook, before any content that could be doubted.
-- **Design direction**: a quiet horizontal band, four numbers, no imagery — a deliberate pause in an otherwise image-heavy page.
-- **Animation**: numbers count up once when scrolled into view.
-- **Why it exists**: the brief's "trust and exclusivity" gap is closed fastest by hard numbers (residences delivered, portfolio value, referral rate) shown before any sales copy.
+1. **Hero** — real headline ("Trusted Real Estate Company In Dubai"), real stat bar (398M+ transactions, 199+ clients, 348+ sold, 8+ yrs, 4.5★, RERA).
+2. **Why Trixis Homes** — the five real value props (RERA Certified, Data Driven, End-to-End, Global Network, Fast & Transparent) plus the real client testimonial.
+3. **Smart Property Search** — a functional search bar with quick filters, wired to `/buy`.
+4. **Investment Path Finder** — a genuine 3-step interactive quiz (goal → budget → timeline) that recommends a property track and deep-links into `/buy` with matching filters.
+5. **Partner Developers** — grid of the 5 real developers, linking to their detail pages.
+6. **Featured Off-Plan Projects** — the 4 real projects (Canopies, Golf Trails, Golf Fields, Al Ghadeer Gardens), no invented listings.
+7. **Dubai Investment Benefits** — factual, well-known investment benefits (tax, yields, Golden Visa, freehold ownership, infrastructure, regulation).
+8. **Featured Communities** — interactive selector (Damac Hills, Jumeirah Islands, The Meadows, The Springs, Town Square).
+9. **Market Performance Dashboard** — a single-hue bar chart (avg. price growth by area, clearly labeled "illustrative") plus real KPI tiles.
+10. **ROI Calculator** — a fully functional calculator: property price, down payment, rental yield, appreciation, and holding period as live sliders, computing down payment, rental income, projected value, and total ROI in real time.
+11. **Compare Communities & Developers** — toggleable side-by-side comparison tool built on real developer/community data.
+12. **Real Investor Success Stories** — the one real testimonial, spotlighted, plus aggregate trust stats (no fabricated named quotes).
+13. **Buying Process** — a six-step timeline (discovery → shortlist → reservation → SPA → payment plan → handover) with a scroll-linked progress line.
+14. **Latest Market Insights** — three editorial articles (topics are original, not scraped — no real blog existed in the source material).
+15. **Instagram / Media** — image grid + Instagram link (no fabricated press-logo endorsements).
+16. **FAQ** — accordion of genuine, factual Dubai off-plan buying questions.
+17. **Final Consultation CTA** — the real "Ready to build your wealth in Dubai?" form and copy from the live site.
 
-### Brand Story / Philosophy
-- **Purpose**: this is the section that actually differentiates "developer" from "curator." It replaces a generic "About Us" paragraph with a point of view.
-- **Layout**: asymmetric split (text left, image right on desktop, reversed stacking on mobile), not a symmetric two-column — asymmetry reads as designed, symmetry reads as templated.
-- **Animation**: the portrait image is revealed by a wipe (a dark panel slides away) rather than a fade — this is the single highest-leverage "premium" motion cue on the page.
-- **Conversion**: three quiet stats at the base (years, residences, locations) instead of a CTA — this section's job is trust, not conversion.
+## 5. What's real vs. what's placeholder
 
-### Featured Residences (Properties)
-- **Purpose**: the actual product. Everything above this point was permission to look.
-- **Layout**: filterable grid (All / Villas / Penthouses / Estates), asymmetric card content — category tag, name, location, then beds/area/price on a hairline divider at the bottom of each card.
-- **Interaction**: image scales slowly on hover, a gold arrow badge fades in top-right, gradient scrim keeps text legible at all times. This is more restrained than carousel/lightbox galleries, which read as "stock listing site" rather than "curated collection."
-- **Conversion**: filters double as light engagement/segmentation (a user who filters "Penthouse" has told you their intent for free), and the section ends with a CTA to request the *full* private portfolio — implying the six shown are not the complete inventory, which reinforces scarcity.
+**Real, pulled directly from client screenshots**: all hero copy, stats, the "Why Trixis" five points, the Damac Hills community description, all 4 project listings and their full detail copy, all 5 developers and Aldar's full About/Key Facts, the footer sitemap columns, and the client testimonial.
 
-### Why Trixis (USP grid)
-- **Purpose**: answer the objections a serious buyer has *before* they reach the form — legitimacy, craftsmanship, transparency.
-- **Layout**: switches to the ivory surface — this section is the page's palate cleanser and should feel like reading a manifesto, not scrolling more marketing.
-- **Interaction**: each of the six cards inverts to ink-on-hover, icon lifts slightly — a small, expensive-feeling micro-interaction rather than a generic card shadow.
-- **Conversion**: "Limited by Design" and "Proven Track Record" specifically exist to preempt the two most common luxury-real-estate objections (is this actually exclusive, and is this developer established).
+**Placeholder, clearly to be replaced**: all imagery (locally generated Dubai skyline/community SVG art — no internet access was available to source real photography, and screenshots can't be extracted as image assets), the Sell/Contact page copy and contact details (phone/email/address), the 3 Insights article topics, and the Market Dashboard's specific growth percentages (labeled "illustrative market indicator" in the UI itself).
 
-### Acquisition Journey
-- **Purpose**: luxury buyers are risk-averse about opaque, high-friction real estate transactions. A visible, five-step process converts anxiety into confidence.
-- **Layout**: numbered vertical timeline with a progress line that fills as the user scrolls — literally visualizing "you are here" in the process.
-- **Why it replaces a generic FAQ**: FAQs are reactive (answer objections); a journey map is proactive (remove the objection before it forms).
+## 6. Implementation notes
 
-### Testimonials + Press strip
-- **Purpose**: third-party social proof, in the buyer's own words, followed by brand-credibility signals (press mentions).
-- **Layout**: single large quote at a time (not a dense carousel of three) — a full-width italic serif quote reads as an editorial pull-quote, which is a stronger trust signal than a cluttered card grid.
-- **Interaction**: manual + dot navigation, directional slide transitions.
-- **Below it**: an infinite-scroll marquee of press names — cheap to build, disproportionately effective for perceived credibility.
-
-### Contact / Private Consultation (lead-gen)
-- **Purpose**: convert warmed-up interest into a qualified lead with the lowest possible friction.
-- **Layout**: two columns — reassurance copy + direct contact details on the left, a glass-panel form floating over a faint background texture on the right.
-- **Form design**: minimal required fields (name, phone, email), a residence-of-interest dropdown pre-populated from the actual portfolio (turns a cold enquiry into a qualified, taggable lead), optional message, explicit confidentiality microcopy beneath the submit button to reduce hesitation.
-- **Feedback**: on submit, the form is replaced by a confirmation state (checkmark + reassurance copy) rather than a plain alert — the last thing a user sees should still feel designed.
-
-### Sticky mobile CTA
-- **Purpose**: on mobile, users scroll past the primary CTA within seconds; a persistent bottom bar keeps "Enquire" reachable without reintroducing a static, ugly bottom nav on desktop (it's mobile-only by design).
-
-### Footer
-- **Purpose**: a calm landing point, not an afterthought link dump.
-- **Content**: brand statement, sitemap, studio contact details, and a newsletter capture framed as "join the private list" — a second, lower-commitment lead-gen surface for visitors not ready to submit a full enquiry.
-
-## 4. What was deliberately left out
-
-- **Autoplaying video backgrounds** — heavy, often inaccessible, and rarely outperforms a well-art-directed still image at this tier.
-- **Dense stat dashboards / mortgage calculators** — those serve mass-market portals, not a curated/limited-inventory brand; they'd contradict the "by design, not by volume" positioning.
-- **A generic FAQ accordion** — replaced by the Acquisition Journey, which does the same trust-building job with more emotional design value.
-
-## 5. Implementation notes
-
-Built with Next.js (App Router) + TypeScript + Tailwind CSS v4, Framer Motion for all animation/scroll-linked effects, and Lenis for smooth-scroll easing. See `README.md` for setup and the placeholder-imagery note before this goes live for the client.
+Next.js (App Router) + TypeScript + Tailwind CSS v4, Framer Motion for animation, Lenis for smooth scroll. See `README.md` for setup, and Section 5 above before this goes live for the client.

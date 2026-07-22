@@ -19,9 +19,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Trixis Homes | Curated Addresses for a Rare Life",
+  title: "Trixis Homes | Dubai Real Estate Investment Specialists",
   description:
-    "Trixis Homes designs and delivers ultra-premium residences — where architecture, land, and craftsmanship converge into a rare way of living.",
+    "Trixis Homes is a trusted, RERA-certified real estate consultancy helping international investors buy, sell, and grow wealth through Dubai and Abu Dhabi property.",
 };
 
 export default function RootLayout({
@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${inter.variable} has-cursor h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-cream text-ink">
+      <body className="min-h-full flex flex-col bg-paper text-ink">
         <Preloader />
         <CustomCursor />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>

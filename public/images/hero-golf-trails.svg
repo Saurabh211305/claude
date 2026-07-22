@@ -1,0 +1,27 @@
+<svg width="2000" height="1250" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef3e3"/>
+      <stop offset="50%" stop-color="#e2ecd4"/>
+      <stop offset="100%" stop-color="#c7dba3"/>
+    </linearGradient>
+    
+    <filter id="gg">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.02 0"/>
+    </filter>
+  
+  </defs>
+  <rect width="1400" height="900" fill="url(#skyg)"/>
+  <circle cx="200" cy="170" r="55" fill="#fdf1c8" opacity="0.9"/>
+  <path d="M0,560 C300,500 500,620 750,560 C950,510 1150,600 1400,540 L1400,900 L0,900 Z" fill="#8fae6a"/>
+  <path d="M0,650 C300,600 550,700 850,650 C1050,610 1250,680 1400,630 L1400,900 L0,900 Z" fill="#79995a"/>
+  <circle cx="980" cy="560" r="90" fill="#a9c9c9" opacity="0.7"/>
+  <g opacity="0.95">
+    <rect x="150" y="470" width="130" height="110" fill="#f6f1e2" stroke="#7d8f5f" stroke-width="1.5"/>
+    <rect x="320" y="440" width="110" height="140" fill="#f0e9d6" stroke="#7d8f5f" stroke-width="1.5"/>
+    <rect x="470" y="480" width="150" height="100" fill="#f6f1e2" stroke="#7d8f5f" stroke-width="1.5"/>
+    <rect x="660" y="450" width="120" height="130" fill="#f0e9d6" stroke="#7d8f5f" stroke-width="1.5"/>
+  </g>
+  <rect width="1400" height="900" filter="url(#gg)"/>
+</svg>

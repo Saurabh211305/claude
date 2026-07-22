@@ -2,100 +2,212 @@ import { writeFileSync, mkdirSync } from "fs";
 
 mkdirSync("public/images", { recursive: true });
 
-const SHADOW = "#3d3226";
-
 function grain(id) {
   return `
     <filter id="${id}">
       <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
-      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.015 0"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.02 0"/>
     </filter>
   `;
 }
 
-function villaSilhouette(accent) {
-  return `
-    <g opacity="0.92">
-      <path d="M120,620 L280,540 L520,540 L620,590 L900,590 L980,540 L1180,540 L1320,620 L120,620 Z" fill="${SHADOW}"/>
-      <line x1="140" y1="540" x2="140" y2="480" stroke="${accent}" stroke-width="1.5" opacity="0.7"/>
-      <line x1="520" y1="540" x2="520" y2="430" stroke="${accent}" stroke-width="1.5" opacity="0.7"/>
-      <line x1="900" y1="590" x2="900" y2="500" stroke="${accent}" stroke-width="1.5" opacity="0.7"/>
-      <rect x="300" y="560" width="180" height="60" fill="none" stroke="${accent}" stroke-width="1" opacity="0.4"/>
-      <rect x="640" y="560" width="220" height="30" fill="none" stroke="${accent}" stroke-width="1" opacity="0.4"/>
-    </g>
-    <line x1="0" y1="640" x2="1400" y2="640" stroke="${accent}" stroke-width="1" opacity="0.55"/>
-    <line x1="0" y1="700" x2="1400" y2="700" stroke="${accent}" stroke-width="0.6" opacity="0.3"/>
-  `;
-}
-
-function towerSilhouette(accent) {
-  let windows = "";
-  for (let row = 0; row < 14; row++) {
-    for (let col = 0; col < 5; col++) {
-      const y = 160 + row * 26;
-      const x = 560 + col * 40;
-      windows += `<rect x="${x}" y="${y}" width="18" height="14" fill="${accent}" opacity="${0.1 + (row % 3) * 0.05}"/>`;
+// --- Night skyline: navy sky, glowing tower silhouettes, warm window lights ---
+function skylineNight({ accent = "#dd8a3b" }) {
+  let towers = "";
+  const specs = [
+    { x: 120, w: 90, h: 420 },
+    { x: 230, w: 60, h: 320 },
+    { x: 310, w: 110, h: 520 },
+    { x: 440, w: 50, h: 260 },
+    { x: 700, w: 40, h: 620, spire: true },
+    { x: 760, w: 70, h: 380 },
+    { x: 850, w: 90, h: 460 },
+    { x: 960, w: 55, h: 300 },
+    { x: 1040, w: 100, h: 500 },
+    { x: 1160, w: 65, h: 360 },
+    { x: 1250, w: 90, h: 440 },
+  ];
+  for (const s of specs) {
+    const top = 900 - s.h;
+    towers += `<rect x="${s.x}" y="${top}" width="${s.w}" height="${s.h}" fill="#040611"/>`;
+    if (s.spire) {
+      towers += `<polygon points="${s.x + s.w / 2 - 3},${top - 90} ${s.x + s.w / 2 + 3},${top - 90} ${s.x + s.w / 2 + 8},${top} ${s.x + s.w / 2 - 8},${top}" fill="#040611"/>`;
     }
+    let windows = "";
+    const rows = Math.floor(s.h / 22);
+    const cols = Math.max(2, Math.floor(s.w / 16));
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        if (Math.random() > 0.45) continue;
+        const wx = s.x + 5 + c * (s.w / cols);
+        const wy = top + 10 + r * 22;
+        windows += `<rect x="${wx.toFixed(1)}" y="${wy}" width="4" height="6" fill="${accent}" opacity="${(0.35 + Math.random() * 0.5).toFixed(2)}"/>`;
+      }
+    }
+    towers += windows;
   }
-  return `
-    <rect x="540" y="140" width="240" height="520" fill="${SHADOW}" stroke="${accent}" stroke-width="1" opacity="0.7"/>
-    ${windows}
-    <line x1="0" y1="660" x2="1400" y2="660" stroke="${accent}" stroke-width="1" opacity="0.55"/>
-  `;
+  return towers;
 }
 
-function estateSilhouette(accent) {
-  return `
-    <g opacity="0.92">
-      <path d="M200,600 L340,520 L480,600 Z" fill="${SHADOW}" stroke="${accent}" stroke-width="1" opacity="0.6"/>
-      <path d="M460,600 L680,480 L900,600 Z" fill="${SHADOW}" stroke="${accent}" stroke-width="1" opacity="0.6"/>
-      <path d="M880,600 L1000,540 L1120,600 Z" fill="${SHADOW}" stroke="${accent}" stroke-width="1" opacity="0.6"/>
-      <rect x="200" y="600" width="920" height="40" fill="${SHADOW}"/>
-    </g>
-    <line x1="0" y1="645" x2="1400" y2="645" stroke="${accent}" stroke-width="1" opacity="0.55"/>
-    <line x1="0" y1="700" x2="1400" y2="700" stroke="${accent}" stroke-width="0.6" opacity="0.3"/>
-  `;
-}
-
-const SILHOUETTES = { villa: villaSilhouette, tower: towerSilhouette, estate: estateSilhouette };
-
-function makeSvg({ w, h, accent, sky1, sky2, sky3, variant, sun = false }) {
-  const sil = SILHOUETTES[variant](accent);
+function makeSkylineNight({ w, h, accent = "#dd8a3b" }) {
   return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="${sky1}"/>
-      <stop offset="55%" stop-color="${sky2}"/>
-      <stop offset="100%" stop-color="${sky3}"/>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#040611"/>
+      <stop offset="55%" stop-color="#0a0f22"/>
+      <stop offset="100%" stop-color="#141b34"/>
     </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="${accent}" stop-opacity="0.28"/>
+    <radialGradient id="haze" cx="50%" cy="75%" r="60%">
+      <stop offset="0%" stop-color="${accent}" stop-opacity="0.16"/>
       <stop offset="100%" stop-color="${accent}" stop-opacity="0"/>
     </radialGradient>
-    ${grain("g1")}
+    ${grain("gn")}
   </defs>
-  <rect width="1400" height="900" fill="url(#bg)"/>
-  <rect width="1400" height="900" fill="url(#glow)"/>
-  ${sun ? `<circle cx="1080" cy="220" r="52" fill="${accent}" opacity="0.5"/><circle cx="1080" cy="220" r="100" fill="${accent}" opacity="0.12"/>` : ""}
-  ${sil}
-  <rect width="1400" height="900" filter="url(#g1)"/>
+  <rect width="1400" height="900" fill="url(#sky)"/>
+  <circle cx="1150" cy="160" r="70" fill="${accent}" opacity="0.9"/>
+  <circle cx="1150" cy="160" r="130" fill="${accent}" opacity="0.1"/>
+  <rect width="1400" height="900" fill="url(#haze)"/>
+  ${skylineNight({ accent })}
+  <rect x="0" y="860" width="1400" height="40" fill="#040611"/>
+  <rect width="1400" height="900" filter="url(#gn)"/>
 </svg>`;
 }
 
+// --- Coastal / resort daylight scene (low-rise waterfront) ---
+function makeCoastalDay({ w, h, accent }) {
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyd" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eaf3f5"/>
+      <stop offset="45%" stop-color="#dcebe9"/>
+      <stop offset="100%" stop-color="#bcdad3"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7fb8c4"/>
+      <stop offset="100%" stop-color="#3e7f93"/>
+    </linearGradient>
+    ${grain("gc")}
+  </defs>
+  <rect width="1400" height="900" fill="url(#skyd)"/>
+  <circle cx="1180" cy="180" r="60" fill="#fbe8b8" opacity="0.9"/>
+  <rect x="0" y="560" width="1400" height="340" fill="url(#water)"/>
+  <g opacity="0.95">
+    <rect x="140" y="420" width="120" height="150" fill="#f4ede0" stroke="${accent}" stroke-width="1.5"/>
+    <rect x="290" y="380" width="90" height="190" fill="#efe4d0" stroke="${accent}" stroke-width="1.5"/>
+    <rect x="410" y="440" width="150" height="130" fill="#f4ede0" stroke="${accent}" stroke-width="1.5"/>
+    <rect x="600" y="400" width="100" height="170" fill="#efe4d0" stroke="${accent}" stroke-width="1.5"/>
+    <rect x="740" y="430" width="130" height="140" fill="#f4ede0" stroke="${accent}" stroke-width="1.5"/>
+    <rect x="920" y="390" width="110" height="180" fill="#efe4d0" stroke="${accent}" stroke-width="1.5"/>
+    <rect x="1080" y="430" width="140" height="140" fill="#f4ede0" stroke="${accent}" stroke-width="1.5"/>
+  </g>
+  <g opacity="0.8">
+    <path d="M60,900 C120,760 160,760 200,900 Z" fill="#5a7a4a"/>
+    <path d="M1260,900 C1300,780 1340,780 1380,900 Z" fill="#5a7a4a"/>
+    <path d="M1180,900 C1220,800 1250,800 1280,900 Z" fill="#5a7a4a"/>
+  </g>
+  <path d="M0,560 Q700,600 1400,560 L1400,590 Q700,630 0,590 Z" fill="#e8f6f2" opacity="0.6"/>
+  <rect width="1400" height="900" filter="url(#gc)"/>
+</svg>`;
+}
+
+// --- Golf community daylight scene ---
+function makeGolfDay({ w, h, accent }) {
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef3e3"/>
+      <stop offset="50%" stop-color="#e2ecd4"/>
+      <stop offset="100%" stop-color="#c7dba3"/>
+    </linearGradient>
+    ${grain("gg")}
+  </defs>
+  <rect width="1400" height="900" fill="url(#skyg)"/>
+  <circle cx="200" cy="170" r="55" fill="#fdf1c8" opacity="0.9"/>
+  <path d="M0,560 C300,500 500,620 750,560 C950,510 1150,600 1400,540 L1400,900 L0,900 Z" fill="#8fae6a"/>
+  <path d="M0,650 C300,600 550,700 850,650 C1050,610 1250,680 1400,630 L1400,900 L0,900 Z" fill="#79995a"/>
+  <circle cx="980" cy="560" r="90" fill="#a9c9c9" opacity="0.7"/>
+  <g opacity="0.95">
+    <rect x="150" y="470" width="130" height="110" fill="#f6f1e2" stroke="${accent}" stroke-width="1.5"/>
+    <rect x="320" y="440" width="110" height="140" fill="#f0e9d6" stroke="${accent}" stroke-width="1.5"/>
+    <rect x="470" y="480" width="150" height="100" fill="#f6f1e2" stroke="${accent}" stroke-width="1.5"/>
+    <rect x="660" y="450" width="120" height="130" fill="#f0e9d6" stroke="${accent}" stroke-width="1.5"/>
+  </g>
+  <rect width="1400" height="900" filter="url(#gg)"/>
+</svg>`;
+}
+
+// --- Developer hero: dark abstract skyline with big empty middle for wordmark overlay ---
+function makeDeveloperHero({ w, h, accent }) {
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0f22"/>
+      <stop offset="100%" stop-color="#141b34"/>
+    </linearGradient>
+    <radialGradient id="dglow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="${accent}" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="${accent}" stop-opacity="0"/>
+    </radialGradient>
+    ${grain("gd")}
+  </defs>
+  <rect width="1400" height="900" fill="url(#dsky)"/>
+  <rect width="1400" height="900" fill="url(#dglow)"/>
+  ${skylineNight({ accent })}
+  <rect width="1400" height="900" filter="url(#gd)"/>
+</svg>`;
+}
+
+function makeContactTexture({ w, h, accent }) {
+  return `<svg width="${w}" height="${h}" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="csky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0f22"/>
+      <stop offset="100%" stop-color="#1a2140"/>
+    </linearGradient>
+    <radialGradient id="cglow" cx="70%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="${accent}" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="${accent}" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1400" height="900" fill="url(#csky)"/>
+  <rect width="1400" height="900" fill="url(#cglow)"/>
+  ${skylineNight({ accent })}
+</svg>`;
+}
+
+const GOLD = "#dd8a3b";
+
 const items = [
-  { name: "hero-villa", w: 2000, h: 1250, accent: "#a9683f", sky1: "#f4ead9", sky2: "#eddcc0", sky3: "#e3c8a0", variant: "villa", sun: true },
-  { name: "story-courtyard", w: 1200, h: 1500, accent: "#a9683f", sky1: "#f6f0e4", sky2: "#efe2cd", sky3: "#e6d2b3", variant: "estate", sun: false },
-  { name: "contact-texture", w: 2000, h: 1200, accent: "#a9683f", sky1: "#f4ede0", sky2: "#ecdfc7", sky3: "#e2cba7", variant: "tower", sun: false },
-  { name: "property-meridian", w: 1200, h: 1500, accent: "#a9683f", sky1: "#f6f0e4", sky2: "#efe2cd", sky3: "#e6d2b3", variant: "estate", sun: false },
-  { name: "property-solstice", w: 1200, h: 1500, accent: "#7d8f5f", sky1: "#f3f1e2", sky2: "#e9e6c9", sky3: "#dcd8a9", variant: "villa", sun: true },
-  { name: "property-azure", w: 1200, h: 1500, accent: "#5f84a0", sky1: "#eef2f2", sky2: "#dde8e8", sky3: "#c8dade", variant: "tower", sun: false },
-  { name: "property-hearthstone", w: 1200, h: 1500, accent: "#b3704a", sky1: "#f6ebdf", sky2: "#efdcc7", sky3: "#e4c6a5", variant: "estate", sun: false },
-  { name: "property-lumen", w: 1200, h: 1500, accent: "#c99a4a", sky1: "#f8efdf", sky2: "#f2e2b8", sky3: "#e8ce93", variant: "villa", sun: true },
-  { name: "property-obsidian", w: 1200, h: 1500, accent: "#8a6f95", sky1: "#f1edef", sky2: "#e7dfe8", sky3: "#d9cbdd", variant: "tower", sun: true },
+  { name: "hero-dubai", w: 2200, h: 1300, fn: () => makeSkylineNight({ w: 2200, h: 1300, accent: GOLD }) },
+  { name: "contact-texture", w: 2000, h: 1200, fn: () => makeContactTexture({ w: 2000, h: 1200, accent: GOLD }) },
+
+  { name: "property-canopies", w: 1200, h: 1500, fn: () => makeCoastalDay({ w: 1200, h: 1500, accent: "#c9a25c" }) },
+  { name: "hero-canopies", w: 2000, h: 1250, fn: () => makeCoastalDay({ w: 2000, h: 1250, accent: "#c9a25c" }) },
+
+  { name: "property-golf-trails", w: 1200, h: 1500, fn: () => makeGolfDay({ w: 1200, h: 1500, accent: "#7d8f5f" }) },
+  { name: "hero-golf-trails", w: 2000, h: 1250, fn: () => makeGolfDay({ w: 2000, h: 1250, accent: "#7d8f5f" }) },
+
+  { name: "property-golf-fields", w: 1200, h: 1500, fn: () => makeGolfDay({ w: 1200, h: 1500, accent: "#6f8f7d" }) },
+  { name: "hero-golf-fields", w: 2000, h: 1250, fn: () => makeGolfDay({ w: 2000, h: 1250, accent: "#6f8f7d" }) },
+
+  { name: "property-al-ghadeer", w: 1200, h: 1500, fn: () => makeGolfDay({ w: 1200, h: 1500, accent: "#b3704a" }) },
+  { name: "hero-al-ghadeer", w: 2000, h: 1250, fn: () => makeGolfDay({ w: 2000, h: 1250, accent: "#b3704a" }) },
+
+  { name: "developer-aldar", w: 1600, h: 900, fn: () => makeDeveloperHero({ w: 1600, h: 900, accent: GOLD }) },
+  { name: "developer-emaar", w: 1600, h: 900, fn: () => makeDeveloperHero({ w: 1600, h: 900, accent: "#8aa9c9" }) },
+  { name: "developer-damac", w: 1600, h: 900, fn: () => makeDeveloperHero({ w: 1600, h: 900, accent: "#b8a1c9" }) },
+  { name: "developer-binghatti", w: 1600, h: 900, fn: () => makeDeveloperHero({ w: 1600, h: 900, accent: "#c9915c" }) },
+  { name: "developer-beyond", w: 1600, h: 900, fn: () => makeDeveloperHero({ w: 1600, h: 900, accent: "#9db38a" }) },
+
+  { name: "community-damac-hills", w: 1200, h: 900, fn: () => makeGolfDay({ w: 1200, h: 900, accent: "#7d8f5f" }) },
+  { name: "community-jumeirah-islands", w: 1200, h: 900, fn: () => makeCoastalDay({ w: 1200, h: 900, accent: "#5f84a0" }) },
+  { name: "community-meadows", w: 1200, h: 900, fn: () => makeGolfDay({ w: 1200, h: 900, accent: "#6f9f6f" }) },
+  { name: "community-springs", w: 1200, h: 900, fn: () => makeCoastalDay({ w: 1200, h: 900, accent: "#4f9fa0" }) },
+  { name: "community-town-square", w: 1200, h: 900, fn: () => makeGolfDay({ w: 1200, h: 900, accent: "#c9a25c" }) },
 ];
 
 for (const item of items) {
-  const svg = makeSvg(item);
+  const svg = item.fn();
   writeFileSync(`public/images/${item.name}.svg`, svg, "utf-8");
   console.log("wrote", item.name);
 }

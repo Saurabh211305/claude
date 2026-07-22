@@ -7,11 +7,13 @@ export default function Counter({
   value,
   suffix = "",
   prefix = "",
+  decimals = 0,
   className,
 }: {
   value: number;
   suffix?: string;
   prefix?: string;
+  decimals?: number;
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -26,14 +28,17 @@ export default function Counter({
   useEffect(() => {
     return spring.on("change", (latest) => {
       if (ref.current) {
-        ref.current.textContent = `${prefix}${Math.floor(latest).toLocaleString()}${suffix}`;
+        const rounded = decimals > 0 ? latest.toFixed(decimals) : Math.floor(latest).toLocaleString();
+        ref.current.textContent = `${prefix}${rounded}${suffix}`;
       }
     });
-  }, [spring, prefix, suffix]);
+  }, [spring, prefix, suffix, decimals]);
 
   return (
     <span ref={ref} className={className}>
-      {prefix}0{suffix}
+      {prefix}
+      {decimals > 0 ? (0).toFixed(decimals) : 0}
+      {suffix}
     </span>
   );
 }

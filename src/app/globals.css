@@ -1,59 +1,62 @@
 @import "tailwindcss";
 
 :root {
-  --cream: #f7f3ea;
-  --cream-deep: #eee6d6;
+  --midnight: #090d1a;
+  --midnight-soft: #10152b;
+  --midnight-elevated: #1a2140;
+  --paper: #fbf8f3;
+  --paper-dim: #f1ebe0;
   --surface: #ffffff;
-  --ink: #221f1b;
-  --clay: #a9683f;
-  --clay-deep: #8b5230;
-  --clay-soft: #e4c7ac;
-  --line: rgba(34, 31, 27, 0.12);
-  --line-strong: rgba(34, 31, 27, 0.22);
+  --ink: #14151d;
+  --gold: #dd8a3b;
+  --gold-deep: #b8631f;
+  --gold-soft: #f0c896;
 }
 
 @theme inline {
-  --color-cream: var(--cream);
-  --color-cream-deep: var(--cream-deep);
+  --color-midnight: var(--midnight);
+  --color-midnight-soft: var(--midnight-soft);
+  --color-midnight-elevated: var(--midnight-elevated);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
-  --color-clay: var(--clay);
-  --color-clay-deep: var(--clay-deep);
-  --color-clay-soft: var(--clay-soft);
-  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-soft: var(--gold-soft);
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
 }
 
 body {
-  background: var(--cream);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--clay-soft);
-  color: var(--ink);
+  background: var(--gold-soft);
+  color: var(--midnight);
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--clay) transparent;
+  scrollbar-color: var(--gold) transparent;
 }
 
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--cream);
+  background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--clay);
+  background: var(--gold);
 }
 
 :focus-visible {
-  outline: 1.5px solid var(--clay);
+  outline: 1.5px solid var(--gold);
   outline-offset: 3px;
 }
 
@@ -64,8 +67,8 @@ body {
 .text-eyebrow {
   font-family: var(--font-sans);
   font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.28em;
+  font-weight: 600;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
 }
 
