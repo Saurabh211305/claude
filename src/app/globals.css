@@ -1,59 +1,59 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0a0a0a;
-  --ink-soft: #131316;
-  --ink-elevated: #1a1a1e;
-  --paper: #f6f3ec;
-  --paper-dim: #ece7db;
-  --gold: #c9a25c;
-  --gold-soft: #e4cd9a;
-  --line: rgba(246, 243, 236, 0.12);
-  --line-strong: rgba(246, 243, 236, 0.22);
+  --cream: #f7f3ea;
+  --cream-deep: #eee6d6;
+  --surface: #ffffff;
+  --ink: #221f1b;
+  --clay: #a9683f;
+  --clay-deep: #8b5230;
+  --clay-soft: #e4c7ac;
+  --line: rgba(34, 31, 27, 0.12);
+  --line-strong: rgba(34, 31, 27, 0.22);
 }
 
 @theme inline {
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-surface: var(--surface);
   --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-ink-elevated: var(--ink-elevated);
-  --color-paper: var(--paper);
-  --color-paper-dim: var(--paper-dim);
-  --color-gold: var(--gold);
-  --color-gold-soft: var(--gold-soft);
+  --color-clay: var(--clay);
+  --color-clay-deep: var(--clay-deep);
+  --color-clay-soft: var(--clay-soft);
   --color-line: var(--line);
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
 }
 
 body {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--cream);
+  color: var(--ink);
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--gold);
+  background: var(--clay-soft);
   color: var(--ink);
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--gold) transparent;
+  scrollbar-color: var(--clay) transparent;
 }
 
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--ink);
+  background: var(--cream);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--gold);
+  background: var(--clay);
 }
 
 :focus-visible {
-  outline: 1.5px solid var(--gold);
+  outline: 1.5px solid var(--clay);
   outline-offset: 3px;
 }
 

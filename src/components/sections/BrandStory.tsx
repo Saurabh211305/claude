@@ -18,21 +18,21 @@ export default function BrandStory() {
     <section
       id="story"
       ref={ref}
-      className="relative bg-ink py-28 md:py-40"
+      className="relative bg-cream py-28 md:py-40"
     >
       <div className="container-fluid grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-20">
         <div className="relative order-2 lg:order-1">
           <Reveal>
-            <p className="text-eyebrow mb-6 text-gold">Our Philosophy</p>
+            <p className="text-eyebrow mb-6 text-clay">Our Philosophy</p>
           </Reveal>
 
-          <h2 className="font-display max-w-lg text-[clamp(2rem,4.5vw,3.5rem)] font-light leading-[1.05] text-paper">
+          <h2 className="font-display max-w-lg text-[clamp(2rem,4.5vw,3.5rem)] font-light leading-[1.05] text-ink">
             <TextReveal
               lines={["Every home we build", "is an argument for", "slowing down."]}
             />
           </h2>
 
-          <Reveal delay={0.15} className="mt-8 max-w-md space-y-5 text-paper/65">
+          <Reveal delay={0.15} className="mt-8 max-w-md space-y-5 text-ink/65">
             <p className="text-base leading-relaxed">
               Trixis Homes was founded on a simple conviction: true luxury
               isn&apos;t louder, it&apos;s quieter. It&apos;s the weight of a
@@ -49,16 +49,16 @@ export default function BrandStory() {
 
           <Reveal delay={0.25} className="mt-10 flex items-center gap-10 border-t border-line pt-8">
             <div>
-              <p className="font-display text-3xl text-gold">18</p>
-              <p className="mt-1 text-xs tracking-wide text-paper/50">Years of Craft</p>
+              <p className="font-display text-3xl text-clay">18</p>
+              <p className="mt-1 text-xs tracking-wide text-ink/50">Years of Craft</p>
             </div>
             <div>
-              <p className="font-display text-3xl text-gold">120+</p>
-              <p className="mt-1 text-xs tracking-wide text-paper/50">Residences Delivered</p>
+              <p className="font-display text-3xl text-clay">120+</p>
+              <p className="mt-1 text-xs tracking-wide text-ink/50">Residences Delivered</p>
             </div>
             <div>
-              <p className="font-display text-3xl text-gold">9</p>
-              <p className="mt-1 text-xs tracking-wide text-paper/50">Signature Locations</p>
+              <p className="font-display text-3xl text-clay">9</p>
+              <p className="mt-1 text-xs tracking-wide text-ink/50">Signature Locations</p>
             </div>
           </Reveal>
         </div>
@@ -66,7 +66,7 @@ export default function BrandStory() {
         <div className="order-1 lg:order-2">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm">
             <motion.div
-              className="absolute inset-0 origin-bottom bg-ink"
+              className="absolute inset-0 origin-bottom bg-cream-deep"
               initial={{ scaleY: 1 }}
               whileInView={{ scaleY: 0 }}
               viewport={{ once: true, margin: "-15%" }}
@@ -84,7 +84,7 @@ export default function BrandStory() {
               />
             </motion.div>
           </div>
-          <p className="mt-4 text-xs tracking-wide text-paper/40">
+          <p className="mt-4 text-xs tracking-wide text-ink/40">
             The Meridian Residence &mdash; Alibaug, 2023
           </p>
         </div>

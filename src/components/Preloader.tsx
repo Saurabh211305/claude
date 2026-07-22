@@ -19,7 +19,7 @@ export default function Preloader() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-ink"
+          className="fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-cream"
           exit={{
             clipPath: "inset(0 0 100% 0)",
             transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] },
@@ -30,14 +30,14 @@ export default function Preloader() {
               initial={{ y: "100%" }}
               animate={{ y: "0%" }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-              className="font-display text-2xl italic tracking-wide text-paper md:text-3xl"
+              className="font-display text-2xl italic tracking-wide text-ink md:text-3xl"
             >
               Trixis Homes
             </motion.p>
           </div>
           <div className="mt-6 h-px w-40 overflow-hidden bg-line">
             <motion.div
-              className="h-full bg-gold"
+              className="h-full bg-clay"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1.5, ease: [0.65, 0, 0.35, 1], delay: 0.15 }}

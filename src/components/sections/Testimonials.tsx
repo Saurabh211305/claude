@@ -18,16 +18,16 @@ export default function Testimonials() {
   const active = TESTIMONIALS[index];
 
   return (
-    <section id="testimonials" className="bg-ink py-28 md:py-40">
+    <section id="testimonials" className="bg-cream py-28 md:py-40">
       <div className="container-fluid">
         <Reveal>
-          <p className="text-eyebrow mb-6 text-center text-gold">
+          <p className="text-eyebrow mb-6 text-center text-clay">
             In Their Words
           </p>
         </Reveal>
 
         <div className="relative mx-auto max-w-3xl text-center">
-          <Quote className="mx-auto mb-8 text-gold/40" size={40} strokeWidth={1} />
+          <Quote className="mx-auto mb-8 text-clay/40" size={40} strokeWidth={1} />
 
           <div className="relative min-h-[220px] md:min-h-[180px]">
             <AnimatePresence mode="wait" custom={direction}>
@@ -40,13 +40,13 @@ export default function Testimonials() {
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0"
               >
-                <p className="font-display text-2xl italic leading-relaxed text-paper md:text-3xl">
+                <p className="font-display text-2xl italic leading-relaxed text-ink md:text-3xl">
                   &ldquo;{active.quote}&rdquo;
                 </p>
-                <p className="mt-8 text-sm tracking-wide text-gold">
+                <p className="mt-8 text-sm tracking-wide text-clay">
                   {active.name}
                 </p>
-                <p className="mt-1 text-xs text-paper/50">{active.role}</p>
+                <p className="mt-1 text-xs text-ink/50">{active.role}</p>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -56,7 +56,7 @@ export default function Testimonials() {
               onClick={() => go(-1)}
               data-cursor="Prev"
               aria-label="Previous testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-paper transition-colors hover:border-gold hover:text-gold"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-ink transition-colors hover:border-clay hover:text-clay"
             >
               <ChevronLeft size={18} />
             </button>
@@ -70,7 +70,7 @@ export default function Testimonials() {
                     setIndex(i);
                   }}
                   className={`h-1.5 rounded-full transition-all ${
-                    i === index ? "w-6 bg-gold" : "w-1.5 bg-line-strong"
+                    i === index ? "w-6 bg-clay" : "w-1.5 bg-line-strong"
                   }`}
                 />
               ))}
@@ -79,7 +79,7 @@ export default function Testimonials() {
               onClick={() => go(1)}
               data-cursor="Next"
               aria-label="Next testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-paper transition-colors hover:border-gold hover:text-gold"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong text-ink transition-colors hover:border-clay hover:text-clay"
             >
               <ChevronRight size={18} />
             </button>
@@ -92,7 +92,7 @@ export default function Testimonials() {
           {[...PARTNERS, ...PARTNERS].map((name, i) => (
             <span
               key={`${name}-${i}`}
-              className="font-display text-xl italic text-paper/35"
+              className="font-display text-xl italic text-ink/35"
             >
               {name}
             </span>

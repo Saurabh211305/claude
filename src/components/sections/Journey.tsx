@@ -14,13 +14,13 @@ export default function Journey() {
   });
 
   return (
-    <section id="journey" className="bg-ink py-28 md:py-40">
+    <section id="journey" className="bg-cream py-28 md:py-40">
       <div className="container-fluid">
         <div className="max-w-2xl">
           <Reveal>
-            <p className="text-eyebrow mb-6 text-gold">The Acquisition Journey</p>
+            <p className="text-eyebrow mb-6 text-clay">The Acquisition Journey</p>
           </Reveal>
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-light leading-[1.05] text-paper">
+          <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-light leading-[1.05] text-ink">
             <TextReveal lines={["A process built on", "clarity, not pressure."]} />
           </h2>
         </div>
@@ -29,7 +29,7 @@ export default function Journey() {
           <div className="absolute left-[15px] top-0 hidden h-full w-px bg-line md:block">
             <motion.div
               style={{ scaleY: scrollYProgress, transformOrigin: "top" }}
-              className="h-full w-full bg-gold"
+              className="h-full w-full bg-clay"
             />
           </div>
 
@@ -37,13 +37,13 @@ export default function Journey() {
             {JOURNEY_STEPS.map((step, i) => (
               <Reveal key={step.step} delay={i * 0.05}>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-[32px_1fr_2fr] md:items-start md:gap-10">
-                  <div className="hidden h-8 w-8 items-center justify-center rounded-full border border-gold bg-ink text-xs text-gold md:flex">
+                  <div className="hidden h-8 w-8 items-center justify-center rounded-full border border-clay bg-cream text-xs text-clay md:flex">
                     {step.step}
                   </div>
-                  <p className="font-display text-2xl italic text-paper md:pt-0.5 md:text-3xl">
+                  <p className="font-display text-2xl italic text-ink md:pt-0.5 md:text-3xl">
                     {step.title}
                   </p>
-                  <p className="max-w-xl text-base leading-relaxed text-paper/60">
+                  <p className="max-w-xl text-base leading-relaxed text-ink/60">
                     {step.description}
                   </p>
                 </div>

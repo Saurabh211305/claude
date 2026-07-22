@@ -1,35 +1,35 @@
 <svg width="2000" height="1250" viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0a0a0c"/>
-      <stop offset="55%" stop-color="#111014"/>
-      <stop offset="100%" stop-color="#060607"/>
+      <stop offset="0%" stop-color="#f4ead9"/>
+      <stop offset="55%" stop-color="#eddcc0"/>
+      <stop offset="100%" stop-color="#e3c8a0"/>
     </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="35%" r="65%">
-      <stop offset="0%" stop-color="#c9a25c" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="#c9a25c" stop-opacity="0"/>
+    <radialGradient id="glow" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#a9683f" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#a9683f" stop-opacity="0"/>
     </radialGradient>
     
     <filter id="g1">
       <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
-      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.02 0"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.015 0"/>
     </filter>
   
   </defs>
   <rect width="1400" height="900" fill="url(#bg)"/>
   <rect width="1400" height="900" fill="url(#glow)"/>
-  <circle cx="1080" cy="200" r="46" fill="#c9a25c" opacity="0.85"/><circle cx="1080" cy="200" r="90" fill="#c9a25c" opacity="0.08"/>
+  <circle cx="1080" cy="220" r="52" fill="#a9683f" opacity="0.5"/><circle cx="1080" cy="220" r="100" fill="#a9683f" opacity="0.12"/>
   
-    <g opacity="0.9">
-      <path d="M120,620 L280,540 L520,540 L620,590 L900,590 L980,540 L1180,540 L1320,620 L120,620 Z" fill="#040405"/>
-      <line x1="140" y1="540" x2="140" y2="480" stroke="#c9a25c" stroke-width="1.5" opacity="0.6"/>
-      <line x1="520" y1="540" x2="520" y2="430" stroke="#c9a25c" stroke-width="1.5" opacity="0.6"/>
-      <line x1="900" y1="590" x2="900" y2="500" stroke="#c9a25c" stroke-width="1.5" opacity="0.6"/>
-      <rect x="300" y="560" width="180" height="60" fill="none" stroke="#c9a25c" stroke-width="1" opacity="0.35"/>
-      <rect x="640" y="560" width="220" height="30" fill="none" stroke="#c9a25c" stroke-width="1" opacity="0.35"/>
+    <g opacity="0.92">
+      <path d="M120,620 L280,540 L520,540 L620,590 L900,590 L980,540 L1180,540 L1320,620 L120,620 Z" fill="#3d3226"/>
+      <line x1="140" y1="540" x2="140" y2="480" stroke="#a9683f" stroke-width="1.5" opacity="0.7"/>
+      <line x1="520" y1="540" x2="520" y2="430" stroke="#a9683f" stroke-width="1.5" opacity="0.7"/>
+      <line x1="900" y1="590" x2="900" y2="500" stroke="#a9683f" stroke-width="1.5" opacity="0.7"/>
+      <rect x="300" y="560" width="180" height="60" fill="none" stroke="#a9683f" stroke-width="1" opacity="0.4"/>
+      <rect x="640" y="560" width="220" height="30" fill="none" stroke="#a9683f" stroke-width="1" opacity="0.4"/>
     </g>
-    <line x1="0" y1="640" x2="1400" y2="640" stroke="#c9a25c" stroke-width="1" opacity="0.5"/>
-    <line x1="0" y1="700" x2="1400" y2="700" stroke="#c9a25c" stroke-width="0.6" opacity="0.25"/>
+    <line x1="0" y1="640" x2="1400" y2="640" stroke="#a9683f" stroke-width="1" opacity="0.55"/>
+    <line x1="0" y1="700" x2="1400" y2="700" stroke="#a9683f" stroke-width="0.6" opacity="0.3"/>
   
   <rect width="1400" height="900" filter="url(#g1)"/>
 </svg>

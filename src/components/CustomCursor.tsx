@@ -39,12 +39,12 @@ export default function CustomCursor() {
     <div className="cursor-layer">
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[999] h-1.5 w-1.5 rounded-full bg-gold"
+        className="pointer-events-none fixed left-0 top-0 z-[999] h-1.5 w-1.5 rounded-full bg-clay"
         style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
       />
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[998] flex items-center justify-center rounded-full border border-gold/50"
+        className="pointer-events-none fixed left-0 top-0 z-[998] flex items-center justify-center rounded-full border border-clay/50"
         style={{
           x: ringX,
           y: ringY,
@@ -54,7 +54,7 @@ export default function CustomCursor() {
         animate={{
           width: active ? 88 : 34,
           height: active ? 88 : 34,
-          backgroundColor: active ? "rgba(201,162,92,0.12)" : "rgba(201,162,92,0)",
+          backgroundColor: active ? "rgba(169,104,63,0.14)" : "rgba(169,104,63,0)",
         }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       >
@@ -62,7 +62,7 @@ export default function CustomCursor() {
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-eyebrow whitespace-nowrap text-[9px] text-paper"
+            className="text-eyebrow whitespace-nowrap text-[9px] text-ink"
           >
             {label}
           </motion.span>

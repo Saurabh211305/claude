@@ -33,17 +33,17 @@ export default function Navbar() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "border-b border-line bg-ink/80 backdrop-blur-md"
-            : "border-b border-transparent bg-transparent"
+            ? "border-b border-line bg-cream/90 backdrop-blur-md"
+            : "border-b border-transparent bg-cream/10 backdrop-blur-[2px]"
         }`}
       >
         <div className="container-fluid flex h-20 items-center justify-between md:h-24">
           <a
             href="#top"
             data-cursor="Home"
-            className="font-display text-lg tracking-[0.15em] text-paper md:text-xl"
+            className="font-display text-lg tracking-[0.15em] text-ink md:text-xl"
           >
-            TRIXIS <span className="text-gold">HOMES</span>
+            TRIXIS <span className="text-clay">HOMES</span>
           </a>
 
           <nav className="hidden items-center gap-10 lg:flex">
@@ -52,10 +52,10 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 data-cursor="View"
-                className="group relative text-sm tracking-wide text-paper/80 transition-colors hover:text-paper"
+                className="group relative text-sm tracking-wide text-ink/75 transition-colors hover:text-ink"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-clay transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
           </nav>
@@ -64,7 +64,7 @@ export default function Navbar() {
             <a
               href="#contact"
               data-cursor="Enquire"
-              className="hidden rounded-full border border-gold/60 px-6 py-2.5 text-sm tracking-wide text-paper transition-colors hover:bg-gold hover:text-ink md:inline-block"
+              className="hidden rounded-full border border-clay/60 px-6 py-2.5 text-sm tracking-wide text-ink transition-colors hover:bg-clay hover:text-cream md:inline-block"
             >
               Private Enquiry
             </a>
@@ -74,12 +74,12 @@ export default function Navbar() {
               className="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
             >
               <span
-                className={`h-px w-6 bg-paper transition-transform duration-300 ${
+                className={`h-px w-6 bg-ink transition-transform duration-300 ${
                   open ? "translate-y-[3.5px] rotate-45" : ""
                 }`}
               />
               <span
-                className={`h-px w-6 bg-paper transition-transform duration-300 ${
+                className={`h-px w-6 bg-ink transition-transform duration-300 ${
                   open ? "-translate-y-[3.5px] -rotate-45" : ""
                 }`}
               />
@@ -95,7 +95,7 @@ export default function Navbar() {
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-ink px-8"
+            className="fixed inset-0 z-40 flex flex-col justify-center bg-cream px-8"
           >
             <nav className="flex flex-col gap-6">
               {LINKS.map((link, i) => (
@@ -106,7 +106,7 @@ export default function Navbar() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.15 + i * 0.07, duration: 0.5 }}
-                  className="font-display text-4xl italic text-paper"
+                  className="font-display text-4xl italic text-ink"
                 >
                   {link.label}
                 </motion.a>

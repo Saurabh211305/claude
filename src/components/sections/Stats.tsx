@@ -10,7 +10,7 @@ const STATS = [
 
 export default function Stats() {
   return (
-    <section className="relative border-y border-line bg-ink-soft py-20">
+    <section className="relative border-y border-line bg-cream-deep py-20">
       <div className="container-fluid grid grid-cols-2 gap-10 md:grid-cols-4">
         {STATS.map((stat, i) => (
           <Reveal key={stat.label} delay={i * 0.08} className="text-center md:text-left">
@@ -18,9 +18,9 @@ export default function Stats() {
               value={stat.value}
               suffix={stat.suffix}
               prefix={stat.prefix}
-              className="font-display block text-[clamp(2rem,4vw,3.25rem)] text-gold"
+              className="font-display block text-[clamp(2rem,4vw,3.25rem)] text-clay"
             />
-            <p className="mt-2 text-xs tracking-[0.15em] text-paper/50 md:text-sm">
+            <p className="mt-2 text-xs tracking-[0.15em] text-ink/55 md:text-sm">
               {stat.label}
             </p>
           </Reveal>

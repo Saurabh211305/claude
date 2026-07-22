@@ -8,9 +8,11 @@ The brief described the current site (trixis.vercel.app) as generic, visually fl
 
 ## 2. Creative direction
 
-- **Palette**: near-black ink (`#0a0a0a`) as the dominant surface, warm ivory (`#f6f3ec`) as a breathing counter-surface, and a single muted brass/gold accent (`#c9a25c`) used sparingly — on labels, dividers, icons, and primary actions only. One accent color, used consistently, reads as more expensive than five.
-- **Typography**: Fraunces (a soft, editorial serif with italics) for display headlines, paired with Inter for body copy and UI. The serif carries emotion; the sans carries clarity. This mirrors the pairing used by Aman, Sotheby's International Realty, and most luxury editorial brands.
-- **Rhythm**: dark → dark → light → dark alternation between sections (Hero/Stats dark, Brand Story dark, Why Trixis ivory, Journey/Testimonials/Contact dark) so the page has visual pacing instead of a single flat scroll.
+Direction was revised once, after the client pointed to a set of Framer real-estate/architecture templates (Real Agent, Haven, Found & Formed, Aarkitekt) and asked explicitly for a light, warm, editorial feel rather than a dark luxury-hotel palette. The section structure and motion system below carried over unchanged; only the color system and imagery mood were rebuilt.
+
+- **Palette**: warm cream (`#f7f3ea`) as the dominant surface with a deeper cream (`#eee6d6`) for alternating panels, white (`#ffffff`) card surfaces, warm charcoal ink (`#221f1b`, never pure black) for text, and a single clay/terracotta accent (`#a9683f`) used sparingly on labels, icons, and primary actions. The only deliberate dark moment on the page is the localized photo-legibility gradient behind hero/card text and the one-card hover-invert in the "Why Trixis" grid — never a page-level dark theme.
+- **Typography**: Fraunces (a soft, editorial serif with italics) for display headlines, paired with Inter for body copy and UI. The serif carries emotion; the sans carries clarity — the same pairing used across the referenced template genre.
+- **Rhythm**: light → light-deep → light alternation (cream / cream-deep / white cards) rather than dark/light inversion, so the page stays airy end to end while still having visual pacing between sections.
 - **Motion language**: everything reveals on scroll, nothing pops. Text unmasks line-by-line, images wipe open rather than fade, numbers count up once, and hover states are slow (300–700ms) with eased curves rather than default linear transitions. Motion is used to *reveal* content the user already wants, not to decorate.
 
 ## 3. Section-by-section breakdown
