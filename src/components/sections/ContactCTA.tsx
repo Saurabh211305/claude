@@ -6,6 +6,7 @@ import { ArrowRight, Check, TrendingUp } from "lucide-react";
 import Reveal from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
 import MagneticButton from "@/components/motion/MagneticButton";
+import AmbientBackground from "@/components/motion/AmbientBackground";
 
 const CHECKLIST = [
   "1:1 curation with a specialist",
@@ -22,6 +23,7 @@ export default function ContactCTA() {
         <img src="/images/contact-texture.svg" alt="" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-paper-dim/70 via-paper-dim/85 to-paper-dim" />
       </div>
+      <AmbientBackground />
 
       <div className="container-fluid relative grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1fr] lg:gap-24">
         <div>
@@ -80,23 +82,23 @@ export default function ContactCTA() {
                 <input
                   required
                   placeholder="Full name"
-                  className="w-full rounded-sm border border-ink/15 bg-transparent px-4 py-3.5 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none"
+                  className="w-full rounded-sm border border-ink/15 bg-transparent px-4 py-3.5 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none input-glow"
                 />
                 <input
                   required
                   placeholder="WhatsApp"
-                  className="w-full rounded-sm border border-ink/15 bg-transparent px-4 py-3.5 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none"
+                  className="w-full rounded-sm border border-ink/15 bg-transparent px-4 py-3.5 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none input-glow"
                 />
                 <input
                   required
                   type="email"
                   placeholder="Email"
-                  className="w-full rounded-sm border border-ink/15 bg-transparent px-4 py-3.5 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none"
+                  className="w-full rounded-sm border border-ink/15 bg-transparent px-4 py-3.5 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none input-glow"
                 />
                 <textarea
                   rows={3}
                   placeholder="What kind of investment are you looking for?"
-                  className="w-full resize-none rounded-sm border border-ink/15 bg-transparent px-4 py-3.5 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none"
+                  className="w-full resize-none rounded-sm border border-ink/15 bg-transparent px-4 py-3.5 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none input-glow"
                 />
                 <MagneticButton className="block w-full">
                   <button

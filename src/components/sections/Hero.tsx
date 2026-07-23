@@ -7,6 +7,7 @@ import TextReveal from "@/components/motion/TextReveal";
 import Counter from "@/components/motion/Counter";
 import Reveal from "@/components/motion/Reveal";
 import MagneticButton from "@/components/motion/MagneticButton";
+import AmbientBackground from "@/components/motion/AmbientBackground";
 import { HOME_STATS } from "@/lib/data";
 
 export default function Hero() {
@@ -33,6 +34,8 @@ export default function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-paper/10 via-paper/20 to-paper" />
       </motion.div>
+
+      <AmbientBackground className="z-[1]" />
 
       <motion.div style={{ opacity: contentOpacity }} className="container-fluid relative z-10 flex flex-col items-center text-center">
         <motion.div

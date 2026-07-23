@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Reveal, { StaggerGroup, StaggerItem } from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
+import TiltCard from "@/components/motion/TiltCard";
 import { PROPERTIES, type Property } from "@/lib/data";
 
 export default function FeaturedProjects() {
@@ -48,7 +49,7 @@ export function ProjectCard({ property }: { property: Property }) {
   return (
     <motion.div whileHover="hover" className="group h-full">
       <Link href={`/projects/${property.slug}`} data-cursor="View" className="block h-full">
-        <div className="relative aspect-[4/5] w-full overflow-hidden bg-paper-dim">
+        <TiltCard className="relative aspect-[4/5] w-full overflow-hidden rounded-sm bg-paper-dim" max={5}>
           <motion.div
             variants={{ hover: { scale: 1.08 } }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -90,7 +91,7 @@ export function ProjectCard({ property }: { property: Property }) {
               <span className="text-gold-soft">{property.paymentPlan}</span>
             </div>
           </div>
-        </div>
+        </TiltCard>
       </Link>
     </motion.div>
   );

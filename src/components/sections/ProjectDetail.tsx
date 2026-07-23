@@ -7,6 +7,7 @@ import { Building2, Calendar, Check, MapPin, Phone, TrendingUp, Wallet } from "l
 import Reveal from "@/components/motion/Reveal";
 import TextReveal from "@/components/motion/TextReveal";
 import MagneticButton from "@/components/motion/MagneticButton";
+import LiveActivity from "@/components/LiveActivity";
 import type { Property } from "@/lib/data";
 
 export default function ProjectDetail({ property }: { property: Property }) {
@@ -115,7 +116,8 @@ export default function ProjectDetail({ property }: { property: Property }) {
           <div id="enquire" className="lg:sticky lg:top-28 lg:self-start">
             <Reveal delay={0.15}>
               <div className="rounded-sm border border-ink/10 bg-paper-dim p-8 text-ink">
-                <p className="text-eyebrow mb-3 text-gold">Interested in this project?</p>
+                <LiveActivity seed={5} />
+                <p className="text-eyebrow mb-3 mt-5 text-gold">Interested in this project?</p>
                 <p className="font-display text-2xl leading-snug text-ink">
                   Speak with a Dubai property expert
                 </p>

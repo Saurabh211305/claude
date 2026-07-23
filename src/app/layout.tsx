@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import PageTransition from "@/components/PageTransition";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const displaySerif = Instrument_Serif({
+  variable: "--font-display-serif",
   subsets: ["latin"],
   style: ["normal", "italic"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400"],
 });
 
 const inter = Inter({
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} has-cursor h-full antialiased`}
+      className={`${displaySerif.variable} ${inter.variable} has-cursor h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <Preloader />

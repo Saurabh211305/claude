@@ -72,24 +72,24 @@ export default function ContactPage() {
                   <input
                     required
                     placeholder="Full Name"
-                    className="w-full border-b border-ink/15 bg-transparent py-3 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none"
+                    className="w-full border-b border-ink/15 bg-transparent py-3 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none input-glow"
                   />
                   <input
                     required
                     placeholder="Phone / WhatsApp"
-                    className="w-full border-b border-ink/15 bg-transparent py-3 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none"
+                    className="w-full border-b border-ink/15 bg-transparent py-3 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none input-glow"
                   />
                 </div>
                 <input
                   required
                   type="email"
                   placeholder="Email"
-                  className="w-full border-b border-ink/15 bg-transparent py-3 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none"
+                  className="w-full border-b border-ink/15 bg-transparent py-3 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none input-glow"
                 />
                 <textarea
                   rows={4}
                   placeholder="How can we help?"
-                  className="w-full resize-none border-b border-ink/15 bg-transparent py-3 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none"
+                  className="w-full resize-none border-b border-ink/15 bg-transparent py-3 text-sm text-ink placeholder:text-ink/40 focus:border-gold focus:outline-none input-glow"
                 />
                 <button
                   type="submit"
