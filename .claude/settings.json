@@ -23,6 +23,12 @@
         "source": "github",
         "repo": "greensock/gsap-skills"
       }
+    },
+    "claude-design-skillstack": {
+      "source": {
+        "source": "github",
+        "repo": "freshtechbro/claudedesignskills"
+      }
     }
   },
   "enabledPlugins": {
@@ -31,6 +37,11 @@
     "claude-api@anthropic-agent-skills": true,
     "ui-ux-pro-max@ui-ux-pro-max-skill": true,
     "taste-skill@taste-skill": true,
-    "gsap-skills@gsap-skills": true
+    "gsap-skills@gsap-skills": true,
+    "animation-components@claude-design-skillstack": true,
+    "authoring-motion@claude-design-skillstack": true,
+    "core-3d-animation@claude-design-skillstack": true,
+    "extended-3d-scroll@claude-design-skillstack": true,
+    "meta-skills@claude-design-skillstack": true
   }
 }
