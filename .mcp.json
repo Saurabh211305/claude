@@ -6,6 +6,10 @@
       "headers": {
         "x-api-key": "${TWENTY_FIRST_API_KEY}"
       }
+    },
+    "shadcn-ui": {
+      "command": "npx",
+      "args": ["-y", "@jpisnice/shadcn-ui-mcp-server"]
     }
   }
 }
