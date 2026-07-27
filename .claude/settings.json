@@ -17,6 +17,12 @@
         "source": "github",
         "repo": "Leonxlnx/taste-skill"
       }
+    },
+    "gsap-skills": {
+      "source": {
+        "source": "github",
+        "repo": "greensock/gsap-skills"
+      }
     }
   },
   "enabledPlugins": {
@@ -24,6 +30,7 @@
     "example-skills@anthropic-agent-skills": true,
     "claude-api@anthropic-agent-skills": true,
     "ui-ux-pro-max@ui-ux-pro-max-skill": true,
-    "taste-skill@taste-skill": true
+    "taste-skill@taste-skill": true,
+    "gsap-skills@gsap-skills": true
   }
 }
